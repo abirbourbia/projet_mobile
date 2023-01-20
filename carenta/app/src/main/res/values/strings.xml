@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">carenta</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="to_make_the_payment_process_easier_fill_up_your_credit_card_information">To make the payment process easier fill up your credit card information</string>
+    <string name="credit_card_number">Credit Card Number</string>
+    <string name="next">Next</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="todo">TODO</string>
+    <string name="todo1">TODO</string>
+    <string name="forget_your_password">Forget your password?</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="sign_up">Sign up</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="or_sign_in_with">- or sign in with -</string>
+    <string name="password">Password</string>
+    <string name="twitter">twitter</string>
+    <string name="signin">Sign in</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="phoneicon">TODO</string>
+    <string name="googleicon">TODO</string>
+    <string name="facebookicon">TODO</string>
+    <string name="twittericon">TODO</string>
+    <string name="gobackicon">TODO</string>
+    <string name="logoicon">TODO</string>
+    <string name="todo2">TODO</string>
+    <string name="todo3">TODO</string>
+</resources>

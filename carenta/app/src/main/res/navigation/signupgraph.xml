@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signupgraph.xml"
+    app:startDestination="@id/signup1">
+
+    <fragment
+        android:id="@+id/signup1"
+        android:name="com.example.carenta.signup1"
+        android:label="fragment_signup1"
+        tools:layout="@layout/fragment_signup1" >
+        <action
+            android:id="@+id/action_signup1_to_signup2"
+            app:destination="@id/signup2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signup2"
+        android:name="com.example.carenta.signup2"
+        android:label="fragment_signup2"
+        tools:layout="@layout/fragment_signup2" >
+        <action
+            android:id="@+id/action_signup2_to_signup3"
+            app:destination="@id/signup3" />
+        <action
+            android:id="@+id/action_signup2_to_signup1"
+            app:destination="@id/signup1" />
+    </fragment>
+    <fragment
+        android:id="@+id/signup3"
+        android:name="com.example.carenta.signup3"
+        android:label="fragment_signup3"
+        tools:layout="@layout/fragment_signup3" >
+        <action
+            android:id="@+id/action_signup3_to_signup2"
+            app:destination="@id/signup2" />
+    </fragment>
+</navigation>
