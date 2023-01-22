@@ -1,6 +1,8 @@
 package com.example.carenta
 
+import retrofit2.HttpException
 import java.io.File
+import java.io.IOException
 import java.util.Date
 
 class user(
@@ -11,7 +13,6 @@ class user(
     var birthdate:String?,
     var creditcard:String?,
     var expirationdate:String?,
-    var drivinglicence: String
 )
     : java.io.Serializable
 

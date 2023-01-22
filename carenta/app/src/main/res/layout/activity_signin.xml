@@ -51,8 +51,8 @@
 
     <ImageButton
         android:id="@+id/twitter"
-        android:layout_width="60dp"
-        android:layout_height="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="86dp"
@@ -86,10 +86,10 @@
 
     <ImageButton
         android:id="@+id/facebook"
-        android:layout_width="60dp"
-        android:layout_height="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="130dp"
         android:backgroundTint="#FFF"
         android:contentDescription="@string/facebookicon"
         android:src="@drawable/facebook"
@@ -104,13 +104,13 @@
 
     <ImageButton
         android:id="@+id/google"
-        android:layout_width="60dp"
-        android:layout_height="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="86dp"
         android:backgroundTint="#FFF"
         android:contentDescription="@string/googleicon"
-        android:src="@drawable/google"
+        android:src="@drawable/googlered"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/facebook"

@@ -9,4 +9,5 @@ object RetrofitService {
         .baseUrl(url)
         .addConverterFactory(GsonConverterFactory.create()).build()
         .create(Endpoint::class.java)
+
 }

@@ -1,5 +1,6 @@
 const express = require("express");
 const mysql = require("mysql");
+const multer = require('multer')
 const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,16 +17,18 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 
+var storage;
+
 // sohaib's test 1
-app.get("/", function (req, res) {
-    res.send("Welcome to the TP")
-})
+// app.get("/", function (req, res) {
+//     res.send("Welcome to the TP")
+// })
 
 // sohaib's test 2
-app.post("/data", function (req, res) {
-    const data = req.body
-    res.send(`Hello, I am ${data.name} and I am ${data.age} years old`)
-})
+// app.post("/data", function (req, res) {
+//     const data = req.body
+//     res.send(`Hello, I am ${data.name} and I am ${data.age} years old`)
+// })
 
 // login
  app.post('/login', function(req,res){
@@ -53,26 +56,26 @@ app.post("/data", function (req, res) {
   });
 
 
-// signup
-app.post('/signup', function(req,res){
-    const { id, fullname, phonenumber, password, birthdate, creditcard, expirationdate, drivinglicence } = req.body
-    connection.query("INSERT into user values (?,?,?,?,?,?,?,?)", [id,fullname,phonenumber,password,birthdate,creditcard,expirationdate,drivinglicence]
-    ,function(err,result) {
-        if (err) {
-            console.log(err)
-            res.status(500).json({message:"server error"}) 
-        }
-        if (result) {
-            console.log(result);
-            res.status(200).json({
-                message: "user signed up successfully",
-                data: result
-            })
-        }
+// signup 01
+// app.post('/signup', function(req,res){
+//     const { id, fullname, phonenumber, password, birthdate, creditcard, expirationdate, drivinglicence } = req.body
+//     connection.query("INSERT into user values (?,?,?,?,?,?,?,?)", [id,fullname,phonenumber,password,birthdate,creditcard,expirationdate,drivinglicence]
+//     ,function(err,result) {
+//         if (err) {
+//             console.log(err)
+//             res.status(500).json({message:"server error"}) 
+//         }
+//         if (result) {
+//             console.log(result);
+//             res.status(200).json({
+//                 message: "user signed up successfully",
+//                 data: result
+//             })
+//         }
 
-    })
+//     })
     
-});
+// });
 
  // get car
  app.get('/getcar',function(req,res){   
@@ -86,6 +89,33 @@ app.post('/signup', function(req,res){
        res.status(200).json(results)
    })
    });
+
+   var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './public/user/')
+    },
+    filename: function (req, file, cb) {
+      cb(null,Date.now()+"-"+file.originalname);
+    }
+  })
+   
+
+
+// adduser
+
+app.post("/adduser",multer({storage: storage}).single('image'), function(req, res) { 
+    var data = JSON.parse(req.body.user)
+	var query="INSERT INTO user(fullname,phonenumber,password,birthdate,creditcard,expirationdate,drivinglicence) values (?,?,?,?,?,?,?)"
+    connection.query(query,[data.fullname,data.phonenumber,data.password,data.birthdate,data.creditcard,data.expirationdate,"user"+req.file.filename],function(error,results){
+       if (error) {
+           console.log(error)
+           res.status(500).json({message:"server error"}) 
+       }
+        res.status(200).json("success")
+   })  
+      })
+
+
 
 
 const server = app.listen(8082,function() {

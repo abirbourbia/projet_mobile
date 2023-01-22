@@ -115,48 +115,73 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <ImageButton
-        android:id="@+id/upload"
-        android:layout_width="320dp"
+        android:id="@+id/uploadGallery"
+        android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="42dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="68dp"
         android:backgroundTint="#FFF"
-        android:src="@drawable/upload"
+        android:src="@drawable/downlaod"
         app:cornerRadius="20px"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        tools:ignore="SpeakableTextPresentCheck"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/driving"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/imageView14"
         android:layout_width="100dp"
         android:layout_height="0dp"
         android:layout_marginStart="155dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="156dp"
         android:src="@drawable/progress3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upload" />
+        app:layout_constraintTop_toBottomOf="@+id/uploadGallery" />
 
     <ImageView
-        android:id="@+id/drivinglicenceimg"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:id="@+id/driving"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_marginStart="141dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="142dp"
-        app:layout_constraintBottom_toTopOf="@+id/upload"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.363"
         tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/uploeadCamera"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="70dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/camera"
+        app:layout_constraintEnd_toStartOf="@+id/uploadGallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driving" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:text="Gallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadGallery" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:text="Camera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploeadCamera" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
