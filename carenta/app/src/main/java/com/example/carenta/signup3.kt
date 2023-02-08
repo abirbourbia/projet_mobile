@@ -10,7 +10,6 @@ import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.Settings.Global.putInt
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -61,6 +60,13 @@ class signup3 : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_signup3, container, false)
 
+        // verify if the user is connected
+
+        val pref = requireActivity().getSharedPreferences("user", Context.MODE_PRIVATE)
+        if(pref.getBoolean("connected",false)) {
+            startActivity(Intent(requireActivity(),MainActivity::class.java))
+            requireActivity().finish()
+        }
         // the buttons to go back to the previous fragment
         val btn = view.findViewById<Button>(R.id.back2)
         btn.setOnClickListener {
@@ -70,12 +76,13 @@ class signup3 : Fragment() {
             findNavController().navigate(R.id.action_signup3_to_signup2)
         }
 
+
         // button to go back to the sign in activity
         view.findViewById<TextView>(R.id.signinlink).setOnClickListener{
             startActivity(Intent(requireActivity(), signin::class.java))
             requireActivity().finish()
         }
-        var x = rand(1000,9999)
+        val x = rand(1000,9999)
         // code to upload the driving license from gallery
         btn_upload_gallery = view.findViewById<ImageButton>(R.id.uploadGallery)
         btn_upload_camera = view.findViewById<ImageButton>(R.id.uploeadCamera)
@@ -143,6 +150,13 @@ class signup3 : Fragment() {
             val image = MultipartBody.Part.createFormData("image", file.getName(), reqFile)
             val userBody =  MultipartBody.Part.createFormData("user", Gson().toJson(userdb))
             addUser(image,userBody)
+            val pref = requireActivity().getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
+            pref.edit {
+                putInt("idUser",userdb.id)
+                putBoolean("connected",true)
+            }
+            startActivity(Intent(requireActivity(),MainActivity::class.java))
+            requireActivity().finish()
         }
         return view
     }

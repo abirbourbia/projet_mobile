@@ -38,8 +38,7 @@ class DetailFragment : Fragment() {
             binding.model.text = car.model
             binding.tarif.text = car.tarif+"0DA/H"
             Glide.with(requireActivity()).load(url+car.marque).into(binding.mark)
-            Glide.with(requireActivity()).load(
-                url+car.image).into(binding.image)
+            Glide.with(requireActivity()).load(url+car.image).into(binding.image)
         }
     }
 }
