@@ -33,10 +33,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getcar()
-        //val vm = CarModel()
-        //val view = requireActivity().findViewById<RecyclerView>(R.id.recycleView)
-
-
     }
 
     private fun getcar() {

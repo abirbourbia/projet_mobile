@@ -1,21 +1,15 @@
 package com.example.carenta
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+import android.content.Intent
+import android.graphics.Color.rgb
+import android.net.Uri
 import android.os.Bundle
-import android.text.InputType.TYPE_NULL
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.carenta.databinding.FragmentDetailBinding
-import java.text.SimpleDateFormat
-import java.util.*
 
 class DetailFragment : Fragment() {
    lateinit var binding: FragmentDetailBinding
@@ -37,8 +31,25 @@ class DetailFragment : Fragment() {
         if(car!=null) {
             binding.model.text = car.model
             binding.tarif.text = car.tarif+"0DA/H"
+            binding.model2.text = car.model
+            if(car.disponibility=="1")
+            {
+                binding.disponibility.text = "Available"
+            } else {
+                binding.disponibility.text = "Not Available"
+                binding.disponibility.setBackgroundColor(rgb(255,0,0))
+            }
+
             Glide.with(requireActivity()).load(url+car.marque).into(binding.mark)
             Glide.with(requireActivity()).load(url+car.image).into(binding.image)
+            binding.location.setOnClickListener{
+                var latitude = car.x
+                var longitude = car.y
+                val place = Uri.parse("geo:$latitude,$longitude?q=$latitude,$longitude&z=10")
+                val intent = Intent(Intent.ACTION_VIEW, place)
+                intent.setPackage("com.google.android.apps.maps");
+                startActivity(intent)
+            }
         }
     }
 }

@@ -8,7 +8,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw());
 app.use(express.static('public'));
 
-
 var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
@@ -18,17 +17,6 @@ var connection = mysql.createConnection({
 connection.connect();
 
 var storage;
-
-// sohaib's test 1
-// app.get("/", function (req, res) {
-//     res.send("Welcome to the TP")
-// })
-
-// sohaib's test 2
-// app.post("/data", function (req, res) {
-//     const data = req.body
-//     res.send(`Hello, I am ${data.name} and I am ${data.age} years old`)
-// })
 
 // login
  app.post('/login', function(req,res){
@@ -101,7 +89,7 @@ var storage;
    
 
 
-// adduser
+// adduser *sign up 02*
 
 app.post("/adduser",multer({storage: storage}).single('image'), function(req, res) { 
     var data = JSON.parse(req.body.user)
@@ -114,9 +102,6 @@ app.post("/adduser",multer({storage: storage}).single('image'), function(req, re
         res.status(200).json("success")
    })  
       })
-
-
-
 
 const server = app.listen(8082,function() {
     const host = server.address().address
