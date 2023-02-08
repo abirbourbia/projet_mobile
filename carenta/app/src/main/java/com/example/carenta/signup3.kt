@@ -45,6 +45,7 @@ import java.util.*
 
 class signup3 : Fragment() {
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var activityResultLauncher1: ActivityResultLauncher<Intent>
     private lateinit var btn_upload_gallery : ImageButton
     private lateinit var btn_upload_camera: ImageButton
     private lateinit var btn_submit: Button
@@ -88,13 +89,13 @@ class signup3 : Fragment() {
         val userdb = user(NULL,userName,phoneNum,x.toString(),dateb,creditc,expDate)
 
         // in case you wanted to capture the image from camera
-       /* activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+       activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val intent = result.data
             if (result.resultCode == AppCompatActivity.RESULT_OK && intent != null) {
                 imageBitmap = intent.extras?.get("data") as Bitmap
                 image.setImageBitmap(imageBitmap)
             }
-        }*/
+        }
         btn_upload_camera.setOnClickListener {
             //pic = pickImageGallery()
             if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)  {
@@ -105,8 +106,8 @@ class signup3 : Fragment() {
             }
         }
 
-        // in case you wanted to bring the camera from gallery
-        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        // in case you wanted to bring the pic from gallery
+        activityResultLauncher1 = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val intent = result.data
             if (result.resultCode == AppCompatActivity.RESULT_OK && intent != null) {
                 val selectedImageUri = intent.getData()
@@ -164,7 +165,7 @@ class signup3 : Fragment() {
     }
 
 
-    // Take a picture launching camera
+    // Take a picture launching camera 1
     fun openCameraIntent() {
         val pictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         activityResultLauncher.launch(pictureIntent)
@@ -172,7 +173,6 @@ class signup3 : Fragment() {
     // Request permission
     private fun checkPermission() {
         val perms = arrayOf(Manifest.permission.CAMERA)
-
         ActivityCompat.requestPermissions(requireActivity(),perms, requestCode)
 
     }
@@ -188,7 +188,7 @@ class signup3 : Fragment() {
         val intent = Intent()
         intent.setType("image/*")
         intent.setAction(Intent.ACTION_GET_CONTENT)
-        activityResultLauncher.launch(intent)
+        activityResultLauncher1.launch(intent)
     }
     // override the random function where we can generate random number
     val random = Random()
