@@ -8,4 +8,5 @@ data class reservation(
     val dateFin: String,
     val destination: String,
     val source: String,
+    val pincode: String
 ) : java.io.Serializable

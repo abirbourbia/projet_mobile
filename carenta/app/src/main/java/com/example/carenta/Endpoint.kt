@@ -27,5 +27,4 @@ interface Endpoint {
     suspend fun addPDV(@Part image: MultipartBody.Part,
                        @Part user:MultipartBody.Part):Response<String>
 
-
 }
