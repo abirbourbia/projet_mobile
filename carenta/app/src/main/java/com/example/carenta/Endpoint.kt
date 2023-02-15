@@ -19,6 +19,9 @@ interface Endpoint {
     @GET("getcar")
     suspend fun getCar():Response<List<Car>>
 
+    @GET("getreservation")
+    suspend fun getReservation():Response<List<reservation>>
+
     @Multipart
     @POST("adduser")
     suspend fun addPDV(@Part image: MultipartBody.Part,

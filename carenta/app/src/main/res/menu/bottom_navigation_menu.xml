@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/mainFragment"
         android:enabled="true"
         android:icon="@drawable/home"
         android:title="" />
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/reservations"
         android:enabled="true"
         android:icon="@drawable/trajet"
         android:title=""/>
     <item
-        android:id="@+id/page_3"
+        android:id="@+id/fragment32"
         android:enabled="true"
         android:icon="@drawable/cars"
         android:title=""/>
     <item
-        android:id="@+id/page_4"
+        android:id="@+id/page1"
         android:enabled="true"
         android:icon="@drawable/profile"
         android:title=""/>

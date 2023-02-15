@@ -10,10 +10,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.edit
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.carenta.databinding.ActivityMainBinding
 import com.example.carenta.databinding.FragmentDetailBinding
 import com.example.carenta.databinding.FragmentMainBinding
 import kotlinx.coroutines.CoroutineScope
@@ -34,7 +39,6 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getcar()
     }
-
     private fun getcar() {
         CoroutineScope(Dispatchers.IO).launch {
             val response = RetrofitService.endpoint.getCar()
@@ -43,10 +47,6 @@ class MainFragment : Fragment() {
                     val car = response.body()
                     if (car != null){
 
-                       /* val adapter = MyAdapter(requireActivity(),car)
-                        binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-                        binding.recyclerView.adapter = adapter
-                        */
                         val view = requireActivity().findViewById<RecyclerView>(R.id.recycleView)
                         val layoutManager = LinearLayoutManager(requireContext())
                         view.layoutManager = layoutManager
@@ -56,14 +56,15 @@ class MainFragment : Fragment() {
                     else{
                         Toast.makeText(requireActivity(), "error car is null!", Toast.LENGTH_SHORT).show()
                     }
-                    }
-                    else {
-                        Toast.makeText(requireActivity(), "error try again", Toast.LENGTH_SHORT).show()
-                    }
-
                 }
+                else {
+                    Toast.makeText(requireActivity(), "error try again", Toast.LENGTH_SHORT).show()
+                }
+
             }
         }
+    }
 }
-        //val response = RetrofitService.endpoint.verifyUser(email,password)
+
+
 

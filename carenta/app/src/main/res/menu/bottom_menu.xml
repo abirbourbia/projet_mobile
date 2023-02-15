@@ -10,14 +10,11 @@
         android:visible="true" />
 
     <item
-        android:id="@+id/trajetFragment"
+        android:id="@+id/bookingFragment2"
         android:enabled="true"
         android:icon="@drawable/ic_sells_menu"
         android:title="Trajets"
         android:visible="true" />
-
-
-
 
     <item
         android:id="@+id/fragment3"

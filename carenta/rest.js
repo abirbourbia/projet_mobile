@@ -78,6 +78,20 @@ var storage;
    })
    });
 
+
+  // get reservation
+ app.get('/getreservation',function(req,res){   
+  var query="select * from reservation"
+  connection.query(query,function(error,results){
+     if (error) {
+         console.log(error)
+         res.status(500).json({message:"server error"}) 
+     }
+  
+     res.status(200).json(results)
+ })
+ });
+
    var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './public/user/')

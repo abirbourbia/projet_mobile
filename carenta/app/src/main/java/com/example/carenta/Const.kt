@@ -1,3 +1,5 @@
 package com.example.carenta
 
-const val url = "https://ed67-41-220-153-15.eu.ngrok.io/"
+import java.sql.Types
+
+const val url = "https://e47b-41-220-149-7.eu.ngrok.io/"

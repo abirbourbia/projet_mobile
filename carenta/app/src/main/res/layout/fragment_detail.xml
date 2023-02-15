@@ -259,7 +259,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="55dp"
         app:cardBackgroundColor="@color/black"
         app:cardCornerRadius="10dp"
         app:cardMaxElevation="12dp"
@@ -271,7 +271,7 @@
 
         <RelativeLayout
             android:id="@+id/box"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
@@ -281,7 +281,7 @@
                 android:layout_below="@+id/model2"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:text="1000 DA/H"
                 android:textColor="#99FFFFFF"
                 android:textSize="15sp" />
@@ -291,7 +291,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Audi R6 6 Avant"
                 android:textColor="@color/white"
                 android:textSize="18sp"

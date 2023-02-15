@@ -94,7 +94,6 @@ class signup3 : Fragment() {
         val creditc = arguments?.getString("creditcard")
         val expDate= arguments?.getString("expDate")
         val userdb = user(NULL,userName,phoneNum,x.toString(),dateb,creditc,expDate)
-
         // in case you wanted to capture the image from camera
        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val intent = result.data
@@ -209,23 +208,4 @@ class signup3 : Fragment() {
     fun rand(from: Int, to: Int): Int {
         return random.nextInt(to - from) + from
     }
-
-
-    // My picture chooser function, but all it does is bringing the URI of the image aka it's path instead of the whole pic.
-        /* private fun pickImageGallery() {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            startActivityForResult(intent, IMAGE_REQUEST_CODE)
-        }
-
-        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-            super.onActivityResult(requestCode, resultCode, data)
-            if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
-                img.setImageURI(data?.data)
-               // uri= img.setImageURI(data?.data)
-            }
-        } */
-
-         */
-
     }

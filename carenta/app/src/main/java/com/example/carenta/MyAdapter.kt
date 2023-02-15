@@ -22,7 +22,7 @@ class MyAdapter(val context: Context,var data:List<Car>):RecyclerView.Adapter<My
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.apply {
             //image.setImageResource(data[position].image)
-            // beh njibou l'image mn la bdd
+            // We bring the image from the data base
             Glide.with(context).load(url+data[position].image).into(image)
             model.text = data[position].model
             //moteur.text = data[position].motor
@@ -34,13 +34,10 @@ class MyAdapter(val context: Context,var data:List<Car>):RecyclerView.Adapter<My
                 disponibility.text = "Not Available"
                 disponibility.setTextColor(Color.RED)
             }
-
-            //mark.setImageResource(data[position].mark)
         }
 
         val card = holder.binding.card
         card.setOnClickListener {
-          //  it.findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
             var bundle = bundleOf("car" to data[position])
             it.findNavController().navigate(R.id.action_mainFragment_to_detailFragment,bundle)
         }
