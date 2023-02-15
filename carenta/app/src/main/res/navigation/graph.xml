@@ -20,7 +20,11 @@
         android:id="@+id/detailFragment"
         android:name="com.example.carenta.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_detail2Fragment"
+            app:destination="@id/detail2Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/reservations"
         android:name="com.example.carenta.reservations"
@@ -31,4 +35,8 @@
         android:name="com.example.carenta.fragment3"
         android:label="fragment_fragment3"
         tools:layout="@layout/fragment_fragment3" />
+    <fragment
+        android:id="@+id/detail2Fragment"
+        android:name="com.example.carenta.Detail2Fragment"
+        android:label="Detail2Fragment" />
 </navigation>
