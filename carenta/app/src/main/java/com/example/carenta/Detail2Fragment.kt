@@ -2,6 +2,7 @@ package com.example.carenta
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -40,8 +41,9 @@ class Detail2Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bundle = Bundle()
         val car = arguments?.getSerializable("car") as Car
-        val idCar = car.id
+        val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
         if (car != null) {
             binding.model.text = car.model
             Glide.with(requireActivity()).load(url + car.marque).into(binding.mark)
@@ -93,6 +95,7 @@ class Detail2Fragment : Fragment() {
                 ).show()
             }
 
+            val x = rand(1000,9999)
 
             // the bottun that shows the confirmation popup plus the pin code
             binding.book.setOnClickListener {
@@ -101,16 +104,9 @@ class Detail2Fragment : Fragment() {
                 ) {
                     Toast.makeText(requireActivity(), "You have to fill all 4 cases", Toast.LENGTH_LONG).show()
                 } else {
-                    /* var bundle = bundleOf(
-                        "userid" to 1,
-                        "carid" to car.id,
-                        "dated" to binding.startDate.text.toString(),
-                        "datef" to binding.endDate.text.toString(),
-                        "adrd" to binding.startAdr.text.toString(),
-                        "adrf" to binding.pickAdr.text.toString()
-                    )
-                    requireActivity().findNavController(R.id.fragmentContainerView).
-                    navigate(R.id.action_detail2Fragment_to_popup, bundle) }*/
+                    val res = reservation(null,pref.getInt("idUser",0),car.id,binding.startDate.toString(),binding.endDate.toString()
+                        ,binding.startAdr.toString(),binding.pickAdr.toString(),x.toString())
+                    bundle.putSerializable("res",res)
                     val showPopUp = popup()
                     showPopUp.show(
                         (requireActivity() as AppCompatActivity).supportFragmentManager,
@@ -122,10 +118,13 @@ class Detail2Fragment : Fragment() {
 
     }
 
-        fun call(view: View) {
-            val dialIntent = Intent(Intent.ACTION_DIAL)
-            dialIntent.data = Uri.parse("tel:" + "0783057340")
-            startActivity(dialIntent)
-        }
+    val random = Random()
+    fun rand(from: Int, to: Int): Int {
+        return random.nextInt(to - from) + from }
+    fun call(view: View) {
+        val dialIntent = Intent(Intent.ACTION_DIAL)
+        dialIntent.data = Uri.parse("tel:" + "0783057340")
+        startActivity(dialIntent)
+    }
 }
 

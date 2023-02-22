@@ -37,16 +37,16 @@ class popup : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val x = rand(1000,9999)
-        val res = reservation(NULL,1,1,"10","12","Algiers","France",x.toString())
-        binding.pincodeid.text = x.toString()
+        val res = arguments?.getSerializable("res") as reservation
+        println("ouiiiiiiiiiiiiiiii"+res)
+        binding.pincodeid.text = res.pincode
         binding.idcancel.setOnClickListener {
             Toast.makeText(requireContext(),"action canceled",Toast.LENGTH_LONG).show()
             dismiss()
         }
         binding.idconfirm.setOnClickListener {
             //addReservation(res)
-            Toast.makeText(requireContext(),"action successfully",Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(),"action done",Toast.LENGTH_LONG).show()
             dismiss()
         }
 
@@ -70,8 +70,5 @@ class popup : DialogFragment() {
         }
     }
 
-    val random = Random()
-    fun rand(from: Int, to: Int): Int {
-        return random.nextInt(to - from) + from }
 
 }
