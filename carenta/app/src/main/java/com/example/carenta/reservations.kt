@@ -41,6 +41,8 @@ class reservations : Fragment() {
             val response = RetrofitService.endpoint.getReservation()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
+                    val listReservation = mutableListOf<reservation>()
+                    val listCar = mutableListOf<Car>()
                     val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
                     val reservation = response.body()
                     if (reservation != null) {
@@ -50,14 +52,16 @@ class reservations : Fragment() {
                                 for (car in carList) {
                                     if (car.id == res.id_car && res.id_user == pref.getInt("idUser", 0))
                                     {
-                                        val view = requireActivity().findViewById<RecyclerView>(R.id.recycleView1)
-                                        val layoutManager = LinearLayoutManager(requireContext())
-                                        view.layoutManager = layoutManager
-                                        view.adapter = MonAdapter(requireContext(), reservation as ArrayList<reservation>)
+                                       listReservation.add(res)
+                                        listCar.add(car)
                                     }
                                 }
                             }
                         }
+                        val view = requireActivity().findViewById<RecyclerView>(R.id.recycleView1)
+                        val layoutManager = LinearLayoutManager(requireContext())
+                        view.layoutManager = layoutManager
+                        view.adapter = MonAdapter(requireContext(), listReservation as ArrayList<reservation>,listCar)
                     } else {
                         Toast.makeText(
                             requireActivity(),
