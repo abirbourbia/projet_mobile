@@ -48,13 +48,13 @@ class profile : Fragment() {
                 Toast.makeText(requireActivity(), "All Information Are Required", Toast.LENGTH_LONG)
                     .show()
                 if (TextUtils.isEmpty(binding.fullNameedit.getText())) {
-                    binding.fullNameedit.setError("Phone Number is Required!")
+                    binding.fullNameedit.setError("User Name required!")
                 }
                 if (TextUtils.isEmpty(binding.phoneNumedit.getText())) {
-                    binding.phoneNumedit.setError("Birth Date is Required!")
+                    binding.phoneNumedit.setError("Phone number required!")
                 }
                 if (TextUtils.isEmpty(binding.Passwordedit.getText())) {
-                    binding.Passwordedit.setError("Birth Date is Required!")
+                    binding.Passwordedit.setError("Password required!")
                 }
 
             } else {
