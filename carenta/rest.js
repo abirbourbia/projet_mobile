@@ -57,6 +57,22 @@ app.post('/updateuser',function(req,res){
    })
    });
 
+// update car's state
+app.post('/updatecar',function(req,res){
+
+    var data = null    
+    var query="UPDATE car SET disponibility = ? WHERE id=?"
+    connection.query(query,[ req.body.disponibility, req.body.id],function(error,results){
+       if (error) {
+           console.log(error)
+           res.status(500).json({message:"server error"}) 
+       }
+       if(results.length>0) {
+           data = results[0]
+       }
+       res.status(200).json(data)
+   })
+   });
  // get car
  app.get('/getcar',function(req,res){   
     var query="select * from car"

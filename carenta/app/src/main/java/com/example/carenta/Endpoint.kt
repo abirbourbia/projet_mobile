@@ -14,7 +14,10 @@ interface Endpoint {
     suspend fun login(@Body data: LoginCreds): Response<user?>
 
     @POST("updateuser")
-    suspend fun updateuser(@Body data: ModifyCreds): Response<user>
+    suspend fun updateuser(@Body data: ModifyUserCreds): Response<user>
+
+    @POST("updatecar")
+    suspend fun updatecar(@Body data: ModifyCreds): Response<Car>
 
     @GET("getcar")
     suspend fun getCar(): Response<List<Car>>

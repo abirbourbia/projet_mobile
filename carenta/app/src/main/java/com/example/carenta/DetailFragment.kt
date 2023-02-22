@@ -30,8 +30,10 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.backhome.setOnClickListener{
+            findNavController().navigate(R.id.action_detailFragment_to_mainFragment)
+        }
         val car = arguments?.getSerializable("car") as Car
-
         if(car!=null) {
             binding.model.text = car.model
             binding.tarif.text = car.tarif+"0DA/H"

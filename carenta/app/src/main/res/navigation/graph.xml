@@ -13,9 +13,6 @@
             android:id="@+id/action_mainFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
-    <action
-        android:id="@+id/action_mainFragment_to_detailFragment"
-        app:destination="@id/detailFragment" />
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.carenta.DetailFragment"
@@ -24,12 +21,19 @@
         <action
             android:id="@+id/action_detailFragment_to_detail2Fragment"
             app:destination="@id/detail2Fragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/reservations"
         android:name="com.example.carenta.reservations"
         android:label="reservations"
-        tools:layout="@layout/reservations" />
+        tools:layout="@layout/reservations" >
+        <action
+            android:id="@+id/action_reservations_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragment32"
         android:name="com.example.carenta.fragment3"
@@ -40,8 +44,8 @@
         android:name="com.example.carenta.Detail2Fragment"
         android:label="Detail2Fragment" >
         <action
-            android:id="@+id/action_detail2Fragment_to_popup"
-            app:destination="@id/popup" />
+            android:id="@+id/action_detail2Fragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <dialog
         android:id="@+id/popup"

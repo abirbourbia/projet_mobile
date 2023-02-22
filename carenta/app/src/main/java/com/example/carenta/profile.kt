@@ -3,6 +3,7 @@ package com.example.carenta
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,14 +43,30 @@ class profile : Fragment() {
             }
         }
         binding.modifyBtn.setOnClickListener {
-            updateUser(binding.fullNameedit.text.toString(), binding.phoneNumedit.text.toString(),
-            binding.Passwordedit.text.toString(),pref.getInt("idUser",0))
+            if (TextUtils.isEmpty(binding.fullNameedit.getText()) || TextUtils.isEmpty(binding.phoneNumedit.getText())
+                || TextUtils.isEmpty(binding.Passwordedit.getText())) {
+                Toast.makeText(requireActivity(), "All Information Are Required", Toast.LENGTH_LONG)
+                    .show()
+                if (TextUtils.isEmpty(binding.fullNameedit.getText())) {
+                    binding.fullNameedit.setError("Phone Number is Required!")
+                }
+                if (TextUtils.isEmpty(binding.phoneNumedit.getText())) {
+                    binding.phoneNumedit.setError("Birth Date is Required!")
+                }
+                if (TextUtils.isEmpty(binding.Passwordedit.getText())) {
+                    binding.Passwordedit.setError("Birth Date is Required!")
+                }
+
+            } else {
+                updateUser(binding.fullNameedit.text.toString(), binding.phoneNumedit.text.toString(),
+                    binding.Passwordedit.text.toString(),pref.getInt("idUser",0))
+            }
         }
     }
 
     private fun updateUser(name: String, tlf: String, pwd: String,id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            val response = RetrofitService.endpoint.updateuser(ModifyCreds(name,tlf,pwd,id))
+            val response = RetrofitService.endpoint.updateuser(ModifyUserCreds(name,tlf,pwd,id))
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     binding.fullNameedit.hint = name

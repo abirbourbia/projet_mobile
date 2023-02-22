@@ -1,4 +1,5 @@
 package com.example.carenta
+import java.io.Serializable
 
 data class reservation(
     val id:Int ?= null,
@@ -9,4 +10,4 @@ data class reservation(
     val destination: String,
     val source: String,
     val pincode: String
-) : java.io.Serializable
+) : Serializable

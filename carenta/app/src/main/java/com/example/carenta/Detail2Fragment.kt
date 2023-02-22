@@ -1,6 +1,6 @@
 package com.example.carenta
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -16,14 +16,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.carenta.databinding.FragmentDetail2Binding
-import com.example.carenta.databinding.FragmentDetailBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.MultipartBody
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -39,9 +34,10 @@ class Detail2Fragment : Fragment() {
         return view
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val bundle = Bundle()
+        val x = rand(1000,9999)
         val car = arguments?.getSerializable("car") as Car
         val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
         if (car != null) {
@@ -95,7 +91,6 @@ class Detail2Fragment : Fragment() {
                 ).show()
             }
 
-            val x = rand(1000,9999)
 
             // the bottun that shows the confirmation popup plus the pin code
             binding.book.setOnClickListener {
@@ -104,10 +99,11 @@ class Detail2Fragment : Fragment() {
                 ) {
                     Toast.makeText(requireActivity(), "You have to fill all 4 cases", Toast.LENGTH_LONG).show()
                 } else {
-                    val res = reservation(null,pref.getInt("idUser",0),car.id,binding.startDate.toString(),binding.endDate.toString()
-                        ,binding.startAdr.toString(),binding.pickAdr.toString(),x.toString())
-                    bundle.putSerializable("res",res)
+                    val res = reservation(null,pref.getInt("idUser",0),car.id,binding.startDate.text.toString(),binding.endDate.text.toString()
+                        ,binding.startAdr.text.toString(),binding.pickAdr.text.toString(),x.toString())
+                    var bundle = Bundle().apply{ putSerializable("res",res) }
                     val showPopUp = popup()
+                    showPopUp.arguments = bundle
                     showPopUp.show(
                         (requireActivity() as AppCompatActivity).supportFragmentManager,
                         "showPopUp"

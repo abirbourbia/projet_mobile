@@ -1,4 +1,5 @@
 package com.example.carenta
+import java.io.Serializable
 
 data class Car(var image: String,
                var model:String,
@@ -9,4 +10,4 @@ data class Car(var image: String,
                val x: String,
                val y: String,
                val id: Int)
-    : java.io.Serializable
+    : Serializable

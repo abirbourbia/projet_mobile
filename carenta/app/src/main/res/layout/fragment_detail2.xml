@@ -7,7 +7,7 @@
     tools:context=".DetailFragment">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/backhome2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:text="Detail Car"
         app:layout_constraintEnd_toStartOf="@+id/imageView8"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/backhome2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
