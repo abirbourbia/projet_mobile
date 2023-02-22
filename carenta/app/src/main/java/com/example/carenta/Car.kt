@@ -8,5 +8,5 @@ data class Car(var image: String,
                var marque: String,
                val x: String,
                val y: String,
-               val id_car: Int)
+               val id: Int)
     : java.io.Serializable

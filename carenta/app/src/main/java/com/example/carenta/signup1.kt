@@ -46,10 +46,7 @@ class signup1 : Fragment() {
         }
         // button to move to the next fragment
         btnNext.setOnClickListener {
-            if (TextUtils.isEmpty(userName.getText()) || TextUtils.isEmpty(phoneNum.getText()) || TextUtils.isEmpty(
-                    date.getText()
-                )
-            ) {
+            if (TextUtils.isEmpty(userName.getText()) || TextUtils.isEmpty(phoneNum.getText()) || TextUtils.isEmpty(date.getText())) {
                 if (TextUtils.isEmpty(userName.getText())) {
                     userName.setError("First name is required!")
                 }

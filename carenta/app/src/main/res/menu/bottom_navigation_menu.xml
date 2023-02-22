@@ -16,7 +16,7 @@
         android:icon="@drawable/cars"
         android:title=""/>
     <item
-        android:id="@+id/page1"
+        android:id="@+id/profile"
         android:enabled="true"
         android:icon="@drawable/profile"
         android:title=""/>

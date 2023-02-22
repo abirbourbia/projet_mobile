@@ -1,15 +1,15 @@
 package com.example.carenta
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carenta.databinding.TrajetLayoutBinding
 
 class MonAdapter(val context: Context, var data:List<reservation>): RecyclerView.Adapter<MonAdapter.MyViewHolder>() {
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
        return MyViewHolder(TrajetLayoutBinding.inflate(LayoutInflater.from(context), parent, false))

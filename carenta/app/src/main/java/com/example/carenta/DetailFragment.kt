@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -56,7 +57,15 @@ class DetailFragment : Fragment() {
                 "car" to car
             )
             binding.bookNow.setOnClickListener {
-                findNavController().navigate(R.id.action_detailFragment_to_detail2Fragment, bundle)
+                if(car.disponibility=="1")
+                {
+                    findNavController().navigate(R.id.action_detailFragment_to_detail2Fragment, bundle)
+                }
+                else
+                {
+                    Toast.makeText(requireActivity(),"Sorry, the car is not available. Check later",Toast.LENGTH_LONG).show()
+                }
+
             }
         }
     }

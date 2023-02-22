@@ -11,13 +11,13 @@ import retrofit2.http.*
 interface Endpoint {
 
     @POST("login/")
-    suspend fun login(@Body data: LoginCreds):Response<user?>
+    suspend fun login(@Body data: LoginCreds): Response<user?>
 
-    //@POST("signup/")
-    //suspend fun signup(@Body data: user ):Response<user?>
+    @POST("updateuser")
+    suspend fun updateuser(@Body data: ModifyCreds): Response<user>
 
     @GET("getcar")
-    suspend fun getCar():Response<List<Car>>
+    suspend fun getCar(): Response<List<Car>>
 
     @GET("getreservation")
     suspend fun getReservation():Response<List<reservation>>
@@ -26,5 +26,8 @@ interface Endpoint {
     @POST("adduser")
     suspend fun addPDV(@Part image: MultipartBody.Part,
                        @Part user:MultipartBody.Part):Response<String>
+
+    @POST("addreservation")
+    suspend fun addRES(@Body data: reservation):Response<reservation?>
 
 }

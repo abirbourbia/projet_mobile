@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.edit
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import com.example.carenta.databinding.ActivitySigninBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,6 +16,7 @@ import kotlinx.coroutines.withContext
 
 class signin : AppCompatActivity() {
     lateinit var binding : ActivitySigninBinding
+    lateinit var namefull : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySigninBinding.inflate(layoutInflater)
@@ -30,10 +33,9 @@ class signin : AppCompatActivity() {
         }
 
 
-
         // processing the login :
         // verify if the user is connected
-        val pref = getSharedPreferences("user", Context.MODE_PRIVATE)
+        val pref = getSharedPreferences("fileName", Context.MODE_PRIVATE)
         if(pref.getBoolean("connected",false)) {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
@@ -52,13 +54,17 @@ class signin : AppCompatActivity() {
             val response =  RetrofitService.endpoint.login(LoginCreds(phonenumber,password))
             withContext(Dispatchers.Main) {
                 if(response.isSuccessful) {
-                    val user = response.body()
+                   val user = response.body()
                     if(user!=null) {
-                        val pref = getSharedPreferences("user", MODE_PRIVATE)
+                        print("USERSIGNED IN "+user.fullname)
+                        val pref = getSharedPreferences("fileName", Context.MODE_PRIVATE)
                         pref.edit {
                             putInt("idUser",user.id)
+                            putString("userName", user.fullname)
+                            putString("phoneNumber",user.phonenumber)
                             putBoolean("connected",true)
                         }
+                        println("username isssssss"+user.fullname)
                         val intent = Intent(this@signin,MainActivity::class.java)
                         startActivity(intent)
                         finish()

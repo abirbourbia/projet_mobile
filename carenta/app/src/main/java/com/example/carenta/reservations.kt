@@ -1,15 +1,16 @@
 package com.example.carenta
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.carenta.databinding.ReservationsBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,19 +18,21 @@ import kotlinx.coroutines.withContext
 
 
 class reservations : Fragment() {
+    lateinit var binding : ReservationsBinding
+    private val viewModel: CarModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.reservations, container, false)
-        //val pref = requireActivity().getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
-        //pref.
+        binding = ReservationsBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view?.findViewById<TextView>(R.id.username)?.text = "Halle Remeche"
-        Toast.makeText(requireActivity(),"cc hehe",Toast.LENGTH_SHORT).show()
+
+        val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
+        binding.username.text = pref.getString("userName","error")
         getReservation()
     }
 
@@ -38,12 +41,23 @@ class reservations : Fragment() {
             val response = RetrofitService.endpoint.getReservation()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
+                    val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
                     val reservation = response.body()
                     if (reservation != null) {
-                        val view = requireActivity().findViewById<RecyclerView>(R.id.recycleView1)
-                        val layoutManager = LinearLayoutManager(requireContext())
-                        view.layoutManager = layoutManager
-                        view.adapter = MonAdapter(requireContext(), reservation as ArrayList<reservation>)
+                        viewModel.carList.observe(requireActivity()) { carList ->
+                            // i verify if the reservation belongs to that user
+                            for (res in reservation) {
+                                for (car in carList) {
+                                    if (car.id == res.id_car && res.id_user == pref.getInt("idUser", 0))
+                                    {
+                                        val view = requireActivity().findViewById<RecyclerView>(R.id.recycleView1)
+                                        val layoutManager = LinearLayoutManager(requireContext())
+                                        view.layoutManager = layoutManager
+                                        view.adapter = MonAdapter(requireContext(), reservation as ArrayList<reservation>)
+                                    }
+                                }
+                            }
+                        }
                     } else {
                         Toast.makeText(
                             requireActivity(),

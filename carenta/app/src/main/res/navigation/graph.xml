@@ -38,5 +38,19 @@
     <fragment
         android:id="@+id/detail2Fragment"
         android:name="com.example.carenta.Detail2Fragment"
-        android:label="Detail2Fragment" />
+        android:label="Detail2Fragment" >
+        <action
+            android:id="@+id/action_detail2Fragment_to_popup"
+            app:destination="@id/popup" />
+    </fragment>
+    <dialog
+        android:id="@+id/popup"
+        android:name="com.example.carenta.popup"
+        android:label="fragment_popup"
+        tools:layout="@layout/fragment_popup" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.carenta.profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

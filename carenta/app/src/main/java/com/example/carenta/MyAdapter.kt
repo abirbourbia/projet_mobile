@@ -2,7 +2,6 @@ package com.example.carenta
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Color.green
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf

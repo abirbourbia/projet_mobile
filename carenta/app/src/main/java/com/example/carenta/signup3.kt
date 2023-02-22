@@ -62,7 +62,7 @@ class signup3 : Fragment() {
 
         // verify if the user is connected
 
-        val pref = requireActivity().getSharedPreferences("user", Context.MODE_PRIVATE)
+        val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
         if(pref.getBoolean("connected",false)) {
             startActivity(Intent(requireActivity(),MainActivity::class.java))
             requireActivity().finish()
@@ -149,13 +149,13 @@ class signup3 : Fragment() {
             val image = MultipartBody.Part.createFormData("image", file.getName(), reqFile)
             val userBody =  MultipartBody.Part.createFormData("user", Gson().toJson(userdb))
             addUser(image,userBody)
-            val pref = requireActivity().getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
+            val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
             pref.edit {
                 putInt("idUser",userdb.id)
+                putString("userName", userdb.fullname)
+                putString("phoneNumber",userdb.phonenumber)
                 putBoolean("connected",true)
             }
-            startActivity(Intent(requireActivity(),MainActivity::class.java))
-            requireActivity().finish()
         }
         return view
     }
@@ -166,6 +166,7 @@ class signup3 : Fragment() {
             withContext(Dispatchers.Main) {
                 btn_submit.isEnabled = true
                 if (response.isSuccessful) {
+                    println("USERSIGNEDUP"+user.body())
                     val intent = Intent(requireActivity(), MainActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()
@@ -208,4 +209,4 @@ class signup3 : Fragment() {
     fun rand(from: Int, to: Int): Int {
         return random.nextInt(to - from) + from
     }
-    }
+}

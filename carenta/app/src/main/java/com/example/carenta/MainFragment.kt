@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.edit
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -51,7 +52,6 @@ class MainFragment : Fragment() {
                         val layoutManager = LinearLayoutManager(requireContext())
                         view.layoutManager = layoutManager
                         view.adapter = MyAdapter(requireContext(), car as ArrayList<Car>)
-
                     }
                     else{
                         Toast.makeText(requireActivity(), "error car is null!", Toast.LENGTH_SHORT).show()
