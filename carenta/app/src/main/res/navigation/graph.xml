@@ -35,11 +35,6 @@
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/fragment32"
-        android:name="com.example.carenta.fragment3"
-        android:label="fragment_fragment3"
-        tools:layout="@layout/fragment_fragment3" />
-    <fragment
         android:id="@+id/detail2Fragment"
         android:name="com.example.carenta.Detail2Fragment"
         android:label="Detail2Fragment" >
@@ -57,4 +52,18 @@
         android:name="com.example.carenta.profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/bluetouth"
+        android:name="com.example.carenta.bluetouth"
+        android:label="fragment_bluetouth"
+        tools:layout="@layout/fragment_bluetouth" >
+        <action
+            android:id="@+id/action_bluetouth_to_bluetouthDetails"
+            app:destination="@id/bluetouthDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/bluetouthDetails"
+        android:name="com.example.carenta.bluetouthDetails"
+        android:label="fragment_bluetouth_details"
+        tools:layout="@layout/fragment_bluetouth_details" />
 </navigation>

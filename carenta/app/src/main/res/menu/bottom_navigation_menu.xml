@@ -11,7 +11,7 @@
         android:icon="@drawable/trajet"
         android:title=""/>
     <item
-        android:id="@+id/fragment32"
+        android:id="@+id/bluetouth"
         android:enabled="true"
         android:icon="@drawable/cars"
         android:title=""/>

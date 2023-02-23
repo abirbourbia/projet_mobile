@@ -99,7 +99,7 @@ class Detail2Fragment : Fragment() {
                 ) {
                     Toast.makeText(requireActivity(), "You have to fill all 4 cases", Toast.LENGTH_LONG).show()
                 } else {
-                    val res = reservation(null,pref.getInt("idUser",0),car.id,binding.startDate.text.toString(),binding.endDate.text.toString()
+                    val res = reservation(null,car.id,pref.getInt("idUser",0),binding.startDate.text.toString(),binding.endDate.text.toString()
                         ,binding.startAdr.text.toString(),binding.pickAdr.text.toString(),x.toString())
                     var bundle = Bundle().apply{ putSerializable("res",res) }
                     val showPopUp = popup()

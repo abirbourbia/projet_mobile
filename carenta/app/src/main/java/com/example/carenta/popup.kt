@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import com.example.carenta.databinding.FragmentPopupBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +31,6 @@ class popup : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val res = arguments?.getSerializable("res") as reservation
-        println("ouiiiiiiiiiiiiiiii"+res)
         binding.pincodeid.text = res.pincode
         binding.idcancel.setOnClickListener {
             Toast.makeText(requireContext(),"action canceled",Toast.LENGTH_LONG).show()
@@ -39,7 +39,7 @@ class popup : DialogFragment() {
         binding.idconfirm.setOnClickListener {
             addReservation(res)
             updatecar("0",res.id_car)
-            Toast.makeText(requireContext(),"action done",Toast.LENGTH_LONG).show()
+            Toast.makeText(requireActivity(),"Operation accomplished",Toast.LENGTH_LONG).show()
             dismiss()
         }
 
@@ -50,9 +50,7 @@ class popup : DialogFragment() {
             val response = RetrofitService.endpoint.addRES(body)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    Toast.makeText(requireActivity(),"Operation accomplished",Toast.LENGTH_LONG).show()
-                    val intent = Intent(requireActivity(), reservations::class.java)
-                    startActivity(intent)
+                    // done
                 }
                 else {
                     Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()

@@ -2,4 +2,4 @@ package com.example.carenta
 
 
 
-const val url = "https://f12b-41-220-147-139.eu.ngrok.io/"
+const val url = "https://d2b1-41-220-148-96.eu.ngrok.io/"

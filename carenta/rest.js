@@ -23,6 +23,15 @@ connection.connect();
 
 var storage;
 
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './public/user/')
+    },
+    filename: function (req, file, cb) {
+      cb(null,Date.now()+"-"+file.originalname);
+    }
+  })
+
 // login
 app.post('/login',function(req,res){
 
@@ -111,6 +120,7 @@ app.post("/adduser",multer({storage: storage}).single('image'), function(req, re
        }
        sendMessage(data.password,data.phonenumber)
         res.status(200).json("success")
+        console.log(data)
    })  
       })
 
@@ -156,14 +166,6 @@ function sendMessage(password,phonenum)
 });
 }
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/user/')
-  },
-  filename: function (req, file, cb) {
-    cb(null,Date.now()+"-"+file.originalname);
-  }
-})
 
 const server = app.listen(8082,function() {
     const host = server.address().address

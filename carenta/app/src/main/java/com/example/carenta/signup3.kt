@@ -51,7 +51,6 @@ class signup3 : Fragment() {
     private lateinit var image: ImageView
     lateinit var imageBitmap: Bitmap
     val requestCode = 400
-
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +60,6 @@ class signup3 : Fragment() {
         val view = inflater.inflate(R.layout.fragment_signup3, container, false)
 
         // verify if the user is connected
-
         val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
         if(pref.getBoolean("connected",false)) {
             startActivity(Intent(requireActivity(),MainActivity::class.java))
@@ -82,34 +80,38 @@ class signup3 : Fragment() {
             startActivity(Intent(requireActivity(), signin::class.java))
             requireActivity().finish()
         }
+        // The password generated randomly
         val x = rand(1000,9999)
         // code to upload the driving license from gallery
-        btn_upload_gallery = view.findViewById<ImageButton>(R.id.uploadGallery)
-        btn_upload_camera = view.findViewById<ImageButton>(R.id.uploeadCamera)
-        image = view.findViewById<ImageView>(R.id.driving)
-        btn_submit = view.findViewById<Button>(R.id.submit)
+        btn_upload_gallery = view.findViewById(R.id.uploadGallery)
+        btn_upload_camera = view.findViewById(R.id.uploeadCamera)
+        image = view.findViewById(R.id.driving)
+        btn_submit = view.findViewById(R.id.submit)
         val userName = arguments?.getString("userName")
         val phoneNum = arguments?.getString("phoneNumber")
         val dateb = arguments?.getString("date")
         val creditc = arguments?.getString("creditcard")
         val expDate= arguments?.getString("expDate")
         val userdb = user(NULL,userName,phoneNum,x.toString(),dateb,creditc,expDate)
+
         // in case you wanted to capture the image from camera
-       activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+
+
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val intent = result.data
-            if (result.resultCode == AppCompatActivity.RESULT_OK && intent != null) {
+            if (result.resultCode == AppCompatActivity.RESULT_OK && intent != null)
+            {
                 imageBitmap = intent.extras?.get("data") as Bitmap
                 image.setImageBitmap(imageBitmap)
             }
         }
         btn_upload_camera.setOnClickListener {
-            //pic = pickImageGallery()
             if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED)  {
-                openCameraIntent()
+                 openCameraIntent()
             }
             else {
                 checkPermission()
-            }
+             }
         }
 
         // in case you wanted to bring the pic from gallery
@@ -148,17 +150,22 @@ class signup3 : Fragment() {
             val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
             val image = MultipartBody.Part.createFormData("image", file.getName(), reqFile)
             val userBody =  MultipartBody.Part.createFormData("user", Gson().toJson(userdb))
+
             addUser(image,userBody)
             val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
             pref.edit {
-                putInt("idUser",userdb.id)
+                putInt("idUser", userdb.id)
                 putString("userName", userdb.fullname)
-                putString("phoneNumber",userdb.phonenumber)
-                putBoolean("connected",true)
+                putString("phoneNumber", userdb.phonenumber)
+                putBoolean("connected", true)
             }
+            val intent = Intent(requireActivity(), MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
         return view
     }
+
 
     private fun addUser(body: MultipartBody.Part, user:MultipartBody.Part) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -167,9 +174,6 @@ class signup3 : Fragment() {
                 btn_submit.isEnabled = true
                 if (response.isSuccessful) {
                     println("USERSIGNEDUP"+user.body())
-                    val intent = Intent(requireActivity(), MainActivity::class.java)
-                    startActivity(intent)
-                    requireActivity().finish()
                     }
                  else {
                     Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
@@ -187,9 +191,10 @@ class signup3 : Fragment() {
     // Request permission
     private fun checkPermission() {
         val perms = arrayOf(Manifest.permission.CAMERA)
-        ActivityCompat.requestPermissions(requireActivity(),perms, requestCode)
 
+        ActivityCompat.requestPermissions(requireActivity(),perms, requestCode)
     }
+
     override fun onRequestPermissionsResult(permsRequestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(permsRequestCode, permissions, grantResults)
         if (permsRequestCode==requestCode && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -204,6 +209,7 @@ class signup3 : Fragment() {
         intent.setAction(Intent.ACTION_GET_CONTENT)
         activityResultLauncher1.launch(intent)
     }
+
     // override the random function where we can generate random number
     val random = Random()
     fun rand(from: Int, to: Int): Int {

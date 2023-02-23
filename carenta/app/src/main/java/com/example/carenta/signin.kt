@@ -56,7 +56,6 @@ class signin : AppCompatActivity() {
                 if(response.isSuccessful) {
                    val user = response.body()
                     if(user!=null) {
-                        print("USERSIGNED IN "+user.fullname)
                         val pref = getSharedPreferences("fileName", Context.MODE_PRIVATE)
                         pref.edit {
                             putInt("idUser",user.id)
@@ -64,7 +63,7 @@ class signin : AppCompatActivity() {
                             putString("phoneNumber",user.phonenumber)
                             putBoolean("connected",true)
                         }
-                        println("username isssssss"+user.fullname)
+                        println("username isssssss"+pref.getInt("idUser",0))
                         val intent = Intent(this@signin,MainActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -75,13 +74,9 @@ class signin : AppCompatActivity() {
                 }
                 else {
                     Toast.makeText(this@signin,response.toString(), Toast.LENGTH_LONG).show()
-                    //Toast.makeText(this@signin,"There is an error", Toast.LENGTH_SHORT).show()
                 }
-
-
             }
 
         }
-
     }
 }
