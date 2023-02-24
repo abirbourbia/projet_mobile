@@ -1,24 +1,19 @@
 package com.example.carenta
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
-import androidx.navigation.fragment.findNavController
 import com.example.carenta.databinding.FragmentPopupBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
 class popup : DialogFragment() {
     lateinit var binding: FragmentPopupBinding
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,13 +28,13 @@ class popup : DialogFragment() {
         val res = arguments?.getSerializable("res") as reservation
         binding.pincodeid.text = res.pincode
         binding.idcancel.setOnClickListener {
-            Toast.makeText(requireContext(),"action canceled",Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "action canceled", Toast.LENGTH_LONG).show()
             dismiss()
         }
         binding.idconfirm.setOnClickListener {
             addReservation(res)
-            updatecar("0",res.id_car)
-            Toast.makeText(requireActivity(),"Operation accomplished",Toast.LENGTH_LONG).show()
+            updatecar("0", res.id_car)
+            Toast.makeText(requireActivity(), "Operation accomplished", Toast.LENGTH_LONG).show()
             dismiss()
         }
 
@@ -51,8 +46,7 @@ class popup : DialogFragment() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     // done
-                }
-                else {
+                } else {
                     Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -61,17 +55,20 @@ class popup : DialogFragment() {
 
     private fun updatecar(disponibility: String, id: Int?) {
         CoroutineScope(Dispatchers.IO).launch {
-            val response = RetrofitService.endpoint.updatecar(ModifyCreds(disponibility,id))
+            val response = RetrofitService.endpoint.updatecar(ModifyCreds(disponibility, id))
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    // the car is now not available
-                }
-                else {
+                    val data = response.body()
+                    if (data != null && data.affectedRows == 1) {
+                        // the car is now not available
+                    } else {
+                        Toast.makeText(requireActivity(), "Error updating car availability", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
                     Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
-
 
 }

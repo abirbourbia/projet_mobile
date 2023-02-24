@@ -1,6 +1,8 @@
 package com.example.carenta
 import java.io.Serializable
 
+
+// the reservation metadata
 data class reservation(
     val id:Int ?= null,
     val id_car:Int ?=null,

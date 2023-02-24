@@ -20,12 +20,11 @@ class MyAdapter(val context: Context,var data:List<Car>):RecyclerView.Adapter<My
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.apply {
-            //image.setImageResource(data[position].image)
             // We bring the image from the data base
             Glide.with(context).load(url+data[position].image).into(image)
             model.text = data[position].model
             //moteur.text = data[position].motor
-            tarif.text = data[position].tarif+"0DA/H"
+            tarif.text = data[position].tarif+"0DA/day"
             if(data[position].disponibility=="1"){
                 disponibility.text = "Available"
                 disponibility.setTextColor(Color.GREEN)
@@ -35,6 +34,7 @@ class MyAdapter(val context: Context,var data:List<Car>):RecyclerView.Adapter<My
             }
         }
 
+        // we display the car's in cards then once the user clicks on one of them we send the data to the next fragment
         val card = holder.binding.card
         card.setOnClickListener {
             var bundle = bundleOf("car" to data[position])

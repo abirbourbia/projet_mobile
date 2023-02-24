@@ -1,9 +1,6 @@
 package com.example.carenta
 
-import retrofit2.HttpException
-import java.io.File
-import java.io.IOException
-import java.util.Date
+// the user's metadata
 
 class user(
     var id:Int,

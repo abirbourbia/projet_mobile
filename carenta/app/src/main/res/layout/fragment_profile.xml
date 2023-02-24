@@ -47,9 +47,9 @@
 
     <ImageView
         android:id="@+id/imageView16"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="46dp"
         android:src="@drawable/user"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,43 +57,49 @@
 
     <EditText
         android:id="@+id/fullNameedit"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:background="@android:color/transparent"
         android:ems="10"
-        android:text="Full Name"
+        android:fontFamily="@font/poppinsmedium"
+        android:hint="Full Name"
         android:inputType="textPersonName"
-        android:textSize="15sp"
+        android:minHeight="48dp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView16"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <EditText
         android:id="@+id/phoneNumedit"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="14dp"
         android:background="@android:color/transparent"
         android:ems="10"
-        android:text="Phone Number"
+        android:fontFamily="@font/poppinsmedium"
+        android:hint="Phone Number"
         android:inputType="textPersonName"
-        android:textSize="15sp"
+        android:minHeight="48dp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView16"
         app:layout_constraintTop_toBottomOf="@+id/fullNameedit" />
 
     <EditText
         android:id="@+id/Passwordedit"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:background="@android:color/transparent"
         android:ems="10"
-        android:text="Password"
+        android:fontFamily="@font/poppinsmedium"
+        android:hint="Password"
         android:inputType="textPersonName"
-        android:textSize="15sp"
+        android:minHeight="48dp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView16"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumedit" />
 
@@ -102,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/green"
         android:fontFamily="@font/poppinsbold"
         android:text="Edit Profile"
@@ -113,33 +119,35 @@
         app:layout_constraintTop_toBottomOf="@+id/Passwordedit" />
 
     <ImageView
-        android:id="@+id/imageView21"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="72dp"
-        android:src="@drawable/heart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
-
-    <ImageView
         android:id="@+id/imageView22"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/right_arrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/modifyBtn" />
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/heart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="84dp"
+        android:fontFamily="@font/poppinsregular"
         android:text="Favourites"
         android:textColor="@color/black"
+        android:textSize="12dp"
         app:layout_constraintStart_toEndOf="@+id/imageView21"
         app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
@@ -168,9 +176,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/poppinsregular"
         android:text="History"
         android:textColor="@color/black"
+        android:textSize="12dp"
         app:layout_constraintStart_toEndOf="@+id/imageView23"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
@@ -199,9 +209,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/poppinsregular"
         android:text="Location"
         android:textColor="@color/black"
+        android:textSize="12dp"
         app:layout_constraintStart_toEndOf="@+id/imageView26"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
@@ -230,9 +242,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/poppinsregular"
         android:text="Language"
         android:textColor="@color/black"
+        android:textSize="12dp"
         app:layout_constraintStart_toEndOf="@+id/imageView28"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
@@ -261,9 +275,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/poppinsregular"
         android:text="Clear history"
         android:textColor="@color/black"
+        android:textSize="12dp"
         app:layout_constraintStart_toEndOf="@+id/imageView30"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -292,9 +308,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/poppinsregular"
         android:text="Information"
         android:textColor="@color/black"
+        android:textSize="12dp"
         app:layout_constraintStart_toEndOf="@+id/imageView32"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -309,7 +327,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView32" />
 
     <ImageView
-        android:id="@+id/imageView35"
+        android:id="@+id/darkmode"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginTop="24dp"
@@ -323,9 +341,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/poppinsregular"
         android:text="Dark mode"
         android:textColor="@color/black"
+        android:textSize="12dp"
         app:layout_constraintStart_toEndOf="@+id/imageView34"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
@@ -333,7 +353,7 @@
         android:id="@+id/logoutBtn"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/red"
         android:fontFamily="@font/poppinsbold"
@@ -342,7 +362,7 @@
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView35" />
+        app:layout_constraintTop_toBottomOf="@+id/darkmode" />
 
     <ImageView
         android:id="@+id/imageView25"

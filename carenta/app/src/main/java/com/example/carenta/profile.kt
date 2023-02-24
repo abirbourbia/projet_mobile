@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
 import com.example.carenta.databinding.FragmentDetail2Binding
 import com.example.carenta.databinding.FragmentProfileBinding
@@ -30,6 +31,8 @@ class profile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Here we are getting the user's data from pref plus the ones he inserts
         val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
         binding.fullNameedit.hint = pref.getString("userName","error")
         binding.phoneNumedit.hint = pref.getString("phoneNumber","error")
@@ -42,7 +45,10 @@ class profile : Fragment() {
                 putBoolean("connected",false)
             }
         }
+
+        // the user can modify his personal information
         binding.modifyBtn.setOnClickListener {
+            // we make sure that he is not sending empty data
             if (TextUtils.isEmpty(binding.fullNameedit.getText()) || TextUtils.isEmpty(binding.phoneNumedit.getText())
                 || TextUtils.isEmpty(binding.Passwordedit.getText())) {
                 Toast.makeText(requireActivity(), "All Information Are Required", Toast.LENGTH_LONG)
@@ -62,8 +68,13 @@ class profile : Fragment() {
                     binding.Passwordedit.text.toString(),pref.getInt("idUser",0))
             }
         }
+        // the button the switch to the dark mode
+        binding.darkmode.setOnClickListener{
+            toggleTheme()
+        }
     }
 
+    // the function that will update the user's information in the data base
     private fun updateUser(name: String, tlf: String, pwd: String,id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             val response = RetrofitService.endpoint.updateuser(ModifyUserCreds(name,tlf,pwd,id))
@@ -85,4 +96,9 @@ class profile : Fragment() {
         }
     }
 
+    // function to switch to the dar mode
+    fun toggleTheme() {
+        val isDarkMode = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+        AppCompatDelegate.setDefaultNightMode(if (isDarkMode) AppCompatDelegate.MODE_NIGHT_NO else AppCompatDelegate.MODE_NIGHT_YES)
+    }
 }

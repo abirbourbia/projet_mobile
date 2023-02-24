@@ -149,7 +149,6 @@ class signup3 : Fragment() {
             val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
             val image = MultipartBody.Part.createFormData("image", file.getName(), reqFile)
             val userBody =  MultipartBody.Part.createFormData("user", Gson().toJson(userdb))
-
             addUser(image,userBody)
             val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
             pref.edit {
@@ -173,6 +172,7 @@ class signup3 : Fragment() {
                 btn_submit.isEnabled = true
                 if (response.isSuccessful) {
                     // the user is successfully added
+                    Toast.makeText(requireActivity(), "welcome !", Toast.LENGTH_SHORT).show()
                     }
                  else {
                     Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()

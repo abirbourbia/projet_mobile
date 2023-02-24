@@ -44,6 +44,8 @@ class signup2 : Fragment() {
         val userName = arguments?.getString("userName")
         val phoneNum = arguments?.getString("phoneNumber")
         val dateb = arguments?.getString("date")
+
+        //Here we make sure that all fields are full filled
         btnNext.setOnClickListener {
             if (TextUtils.isEmpty(creditcard.getText()) || TextUtils.isEmpty(date.getText())) {
                 Toast.makeText(requireActivity(), "All Information Are Required", Toast.LENGTH_LONG)
@@ -59,11 +61,13 @@ class signup2 : Fragment() {
             } else if (date.text.toString().length != 5) {
                 Toast.makeText(
                     requireActivity(),
-                    "Date Format mm/yy " + LocalDate.now()
+                    "Date Format should be mm/yy " + LocalDate.now()
                         .format(DateTimeFormatter.ofPattern("MM/yy")).toString(),
                     Toast.LENGTH_LONG
                 ).show()
             } else {
+
+                // we send data to the next fragment
                 var bundle = bundleOf(
                     "userName" to userName,
                     "date" to dateb,
@@ -92,12 +96,15 @@ class signup2 : Fragment() {
                 )
             ).show()
         }
+
+        // buttons to navigate between fragments
         btnback.setOnClickListener {
             findNavController().navigate(R.id.action_signup2_to_signup1)
         }
         view.findViewById<ImageView>(R.id.goback2).setOnClickListener{
             findNavController().navigate(R.id.action_signup2_to_signup1)
         }
+
         // button to go pack to the sign in page
         view.findViewById<TextView>(R.id.signinlink).setOnClickListener{
             startActivity(Intent(requireActivity(), signin::class.java))

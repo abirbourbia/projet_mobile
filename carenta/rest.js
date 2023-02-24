@@ -51,15 +51,17 @@ app.post('/login',function(req,res){
 
 // update user's information
 app.post('/updateuser',function(req,res){
-
-    var data = null    
+   
+    var data = null
     var query="UPDATE user SET fullname = ?, phonenumber = ?, password=? WHERE id=?"
-    connection.query(query,[ req.body.fullname, req.body.phonenumber, req.body.password, req.body.id],function(error,results){
+    connection.query(query,[ req.body.fullname, req.body.phonenumber, req.body.password, req.body.id],
+        function(error,results){
        if (error) {
            console.log(error)
            res.status(500).json({message:"server error"}) 
        }
        if(results.length>0) {
+        console.log("here")
            data = results[0]
        }
        res.status(200).json(data)
@@ -68,18 +70,16 @@ app.post('/updateuser',function(req,res){
 
 // update car's state
 app.post('/updatecar',function(req,res){
-
     var data = null    
     var query="UPDATE car SET disponibility = ? WHERE id=?"
     connection.query(query,[ req.body.disponibility, req.body.id],function(error,results){
        if (error) {
-           console.log(error)
+           console.log("here?"+error)
            res.status(500).json({message:"server error"}) 
+       } else{
+        res.status(200).json({affectedRows: results.affectedRows})
+        return results.affectedRows
        }
-       if(results.length>0) {
-           data = results[0]
-       }
-       res.status(200).json(data)
    })
    });
  // get car
@@ -104,7 +104,6 @@ app.post('/updatecar',function(req,res){
          console.log(error)
          res.status(500).json({message:"server error"}) 
      }
-  
      res.status(200).json(results)
  })
  });

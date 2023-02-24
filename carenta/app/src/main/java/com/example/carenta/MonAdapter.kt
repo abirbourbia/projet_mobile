@@ -1,9 +1,12 @@
 package com.example.carenta
 
 import android.content.Context
+import android.os.Bundle
 import android.provider.CalendarContract.EventDays
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.carenta.databinding.TrajetLayoutBinding
@@ -23,6 +26,7 @@ class MonAdapter(val context: Context, var data:List<reservation>, var cars:List
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
+        // Here I'm tryning the display the reservation's information
         holder.binding.apply {
             destination.text = data[position].destination
             source.text = data[position].source
@@ -37,6 +41,24 @@ class MonAdapter(val context: Context, var data:List<reservation>, var cars:List
             tripduration.text = diff.toString()+" day"
             tripprice.text = cars[position].tarif+"0DA"
             Glide.with(context).load(url+cars[position].image).into(logoCar)
+
+            // sending the information of the selected reservation
+            var bundle = Bundle().apply{putSerializable("car",cars[position])}
+            card1.setOnClickListener {
+                // once he clicks on pay Now the popup will appear
+                if(cars[position].disponibility=="0")
+                {
+                    val showPopUp1 = freecar()
+                    showPopUp1.arguments = bundle
+                    showPopUp1.show(
+                        (context as AppCompatActivity).supportFragmentManager,
+                        "showPopUp1"
+                    )
+                }
+                else {
+                    Toast.makeText(context,"Car already free !",Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

@@ -37,11 +37,18 @@ class Detail2Fragment : Fragment() {
     @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // we generate a random number of 4 digits for the pincode
         val x = rand(1000,9999)
+
+        // we receive the data from the previous fragment
         val car = arguments?.getSerializable("car") as Car
         val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
         if (car != null) {
+            // we display the data
             binding.model.text = car.model
+            binding.tarif1.text = car.tarif+"0DA/day"
+            binding.model3.text = car.model
             Glide.with(requireActivity()).load(url + car.marque).into(binding.mark)
             Glide.with(requireActivity()).load(url + car.image).into(binding.image)
         }
@@ -101,7 +108,11 @@ class Detail2Fragment : Fragment() {
                 } else {
                     val res = reservation(null,car.id,pref.getInt("idUser",0),binding.startDate.text.toString(),binding.endDate.text.toString()
                         ,binding.startAdr.text.toString(),binding.pickAdr.text.toString(),x.toString())
+
+                    // we send the reservation data to the popup fragment
                     var bundle = Bundle().apply{ putSerializable("res",res) }
+
+                    // once he clicks on pay Now the popup will appear
                     val showPopUp = popup()
                     showPopUp.arguments = bundle
                     showPopUp.show(
@@ -114,9 +125,12 @@ class Detail2Fragment : Fragment() {
 
     }
 
+    // the random function
     val random = Random()
     fun rand(from: Int, to: Int): Int {
         return random.nextInt(to - from) + from }
+
+    // the call function
     fun call(view: View) {
         val dialIntent = Intent(Intent.ACTION_DIAL)
         dialIntent.data = Uri.parse("tel:" + "0783057340")

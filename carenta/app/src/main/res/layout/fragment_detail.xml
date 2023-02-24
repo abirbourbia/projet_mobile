@@ -279,9 +279,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/model2"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:text="1000 DA/H"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppinsregular"
+                android:text="1000 DA/Day"
                 android:textColor="#99FFFFFF"
                 android:textSize="15sp" />
 
@@ -290,7 +291,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppinsmedium"
                 android:text="Audi R6 6 Avant"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -300,11 +302,13 @@
                 android:id="@+id/bookNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="60dp"
-                android:layout_toEndOf="@+id/model2"
+                android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppinsmedium"
                 android:text="Book Now"
+                android:textAllCaps="false"
                 android:textColor="@color/black" />
 
 

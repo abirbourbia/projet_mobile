@@ -28,14 +28,15 @@ class reservations : Fragment() {
         val view = binding.root
         return view
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        // Here we're retrieving the user's information
         val pref = requireActivity().getSharedPreferences("fileName", Context.MODE_PRIVATE)
         binding.username.text = pref.getString("userName","error")
         getReservation()
     }
 
+    // Getting the reservations
     private fun getReservation() {
         CoroutineScope(Dispatchers.IO).launch {
             val response = RetrofitService.endpoint.getReservation()
@@ -47,7 +48,7 @@ class reservations : Fragment() {
                     val reservation = response.body()
                     if (reservation != null) {
                         viewModel.carList.observe(requireActivity()) { carList ->
-                            // i verify if the reservation belongs to that user
+                            // i verify if the reservation belongs to the logged user
                             for (res in reservation) {
                                 for (car in carList) {
                                     if (car.id == res.id_car && res.id_user == pref.getInt("idUser", 0))

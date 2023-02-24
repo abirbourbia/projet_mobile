@@ -30,22 +30,25 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // button to navigate between fragments
         binding.backhome.setOnClickListener{
             findNavController().navigate(R.id.action_detailFragment_to_mainFragment)
         }
+
+        // we're getting the information from the previous fragment
         val car = arguments?.getSerializable("car") as Car
         if(car!=null) {
+            // here we're displaying the data in the fragment
             binding.model.text = car.model
-            binding.tarif.text = car.tarif+"0DA/H"
+            binding.tarif.text = car.tarif+"0DA/day"
             binding.model2.text = car.model
             if(car.disponibility=="1")
             {
                 binding.disponibility.text = "Available"
             } else {
                 binding.disponibility.text = "Not Available"
-                binding.disponibility.setBackgroundDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.non_available_background));
-
-                // binding.disponibility.setBackgroundColor(rgb(255,0,0))
+                binding.disponibility.setBackgroundDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.non_available_background))
             }
             Glide.with(requireActivity()).load(url+car.marque).into(binding.mark)
             Glide.with(requireActivity()).load(url+car.image).into(binding.image)
@@ -57,6 +60,8 @@ class DetailFragment : Fragment() {
                 intent.setPackage("com.google.android.apps.maps");
                 startActivity(intent)
             }
+
+            // we send the car's information to the next fragment
             var bundle = bundleOf(
                 "car" to car
             )

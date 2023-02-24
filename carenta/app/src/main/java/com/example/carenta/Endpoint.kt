@@ -17,7 +17,7 @@ interface Endpoint {
     suspend fun updateuser(@Body data: ModifyUserCreds): Response<user>
 
     @POST("updatecar")
-    suspend fun updatecar(@Body data: ModifyCreds): Response<Car>
+    suspend fun updatecar(@Body data: ModifyCreds): Response<affectedRows>
 
     @GET("getcar")
     suspend fun getCar(): Response<List<Car>>

@@ -1,4 +1,5 @@
 package com.example.carenta
 
-class affectedRows {
-}
+class affectedRows (
+    var affectedRows : Int
+)
