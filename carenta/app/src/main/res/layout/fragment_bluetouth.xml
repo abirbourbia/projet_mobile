@@ -7,28 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".bluetouth">
 
-    <ListView
-        android:id="@+id/select_device_list"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@id/selectDeviceRefresh"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/selectDeviceRefresh"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:fontFamily="@font/poppinssemibold"
+        android:text="Connect"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="20dp"
-        android:text="Refresh"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:fontFamily="@font/poppinssemibold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="65dp"
-        android:layout_marginEnd="20dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

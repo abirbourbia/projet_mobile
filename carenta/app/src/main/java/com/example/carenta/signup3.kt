@@ -171,10 +171,8 @@ class signup3 : Fragment() {
             withContext(Dispatchers.Main) {
                 btn_submit.isEnabled = true
                 if (response.isSuccessful) {
-                    // the user is successfully added
-                    Toast.makeText(requireActivity(), "welcome !", Toast.LENGTH_SHORT).show()
-                    }
-                 else {
+                    // the user is successfully added                 }
+                } else {
                     Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
                 }
             }

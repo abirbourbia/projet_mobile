@@ -73,7 +73,6 @@ class reservations : Fragment() {
                 } else {
                     Toast.makeText(requireActivity(), "error try again", Toast.LENGTH_SHORT).show()
                 }
-
             }
         }
     }
