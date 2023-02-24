@@ -56,6 +56,7 @@ class signup3 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_signup3, container, false)
 
@@ -93,10 +94,7 @@ class signup3 : Fragment() {
         val creditc = arguments?.getString("creditcard")
         val expDate= arguments?.getString("expDate")
         val userdb = user(NULL,userName,phoneNum,x.toString(),dateb,creditc,expDate)
-
         // in case you wanted to capture the image from camera
-
-
         activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val intent = result.data
             if (result.resultCode == AppCompatActivity.RESULT_OK && intent != null)
@@ -129,6 +127,7 @@ class signup3 : Fragment() {
                 image.setImageBitmap(imageBitmap)
             }
         }
+
         // clicking on this botton allows us the pick an image from the camera
         btn_upload_gallery.setOnClickListener {
             imageChooser()
@@ -166,14 +165,14 @@ class signup3 : Fragment() {
         return view
     }
 
-
+    // function to add user to the data base
     private fun addUser(body: MultipartBody.Part, user:MultipartBody.Part) {
         CoroutineScope(Dispatchers.IO).launch {
             val response = RetrofitService.endpoint.addPDV(body, user)
             withContext(Dispatchers.Main) {
                 btn_submit.isEnabled = true
                 if (response.isSuccessful) {
-                    println("USERSIGNEDUP"+user.body())
+                    // the user is successfully added
                     }
                  else {
                     Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()

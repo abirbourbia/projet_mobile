@@ -74,7 +74,7 @@ class bluetouth : Fragment() {
 
         val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list)
         binding.selectDeviceList.adapter = adapter
-       binding.selectDeviceList.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+        binding.selectDeviceList.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             val device: BluetoothDevice = list[position]
             val address: String = device.address
 

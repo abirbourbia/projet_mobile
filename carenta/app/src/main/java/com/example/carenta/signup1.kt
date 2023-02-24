@@ -35,7 +35,7 @@ class signup1 : Fragment() {
         val phoneNum = view.findViewById<EditText>(R.id.editTextPhone)
         val date = view.findViewById<EditText>(R.id.editTextDate)
 
-        // buttons to go back to the sign in activity
+        // buttons to go back to the login in activity
         view.findViewById<TextView>(R.id.signinlink).setOnClickListener {
             startActivity(Intent(requireActivity(), signin::class.java))
             requireActivity().finish()
@@ -44,8 +44,10 @@ class signup1 : Fragment() {
             startActivity(Intent(requireActivity(), signin::class.java))
             requireActivity().finish()
         }
+
         // button to move to the next fragment
         btnNext.setOnClickListener {
+            // checking if the user full filled all the required information
             if (TextUtils.isEmpty(userName.getText()) || TextUtils.isEmpty(phoneNum.getText()) || TextUtils.isEmpty(date.getText())) {
                 if (TextUtils.isEmpty(userName.getText())) {
                     userName.setError("First name is required!")
@@ -60,6 +62,7 @@ class signup1 : Fragment() {
                     .show()
 
             } else {
+                // we send data to the next fragment
                 var bundle = bundleOf1("userName" to userName.text.toString(), "date" to date.text.toString(), "phoneNumber" to phoneNum.text.toString())
                 requireActivity().findNavController(R.id.fragmentContainerView).navigate(R.id.action_signup1_to_signup2, bundle) }
         }
@@ -74,7 +77,7 @@ class signup1 : Fragment() {
                 cal.set(Calendar.DAY_OF_MONTH, day)
                 date.setText(SimpleDateFormat("dd/MM/yyyy").format(cal.time))
             }
-
+            // the date dialog appearing
             DatePickerDialog(
                 requireContext(), picker, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(
                     Calendar.DAY_OF_MONTH
@@ -82,7 +85,6 @@ class signup1 : Fragment() {
             ).show()
 
         }
-
         return view
     }
 
