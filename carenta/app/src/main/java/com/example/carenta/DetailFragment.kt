@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -42,7 +43,9 @@ class DetailFragment : Fragment() {
                 binding.disponibility.text = "Available"
             } else {
                 binding.disponibility.text = "Not Available"
-                binding.disponibility.setBackgroundColor(rgb(255,0,0))
+                binding.disponibility.setBackgroundDrawable(ContextCompat.getDrawable(requireActivity(), R.drawable.non_available_background));
+
+                // binding.disponibility.setBackgroundColor(rgb(255,0,0))
             }
             Glide.with(requireActivity()).load(url+car.marque).into(binding.mark)
             Glide.with(requireActivity()).load(url+car.image).into(binding.image)
